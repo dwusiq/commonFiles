@@ -4,7 +4,7 @@
 
 touch README.md：新建一个README.md文件。
 git init:对现有的某个项目生成git目录。
-git clone [url]:克隆仓库。
+git clone [url]:克隆仓库。 
 git status：确定哪些文件当前处于什么状。
 git add 文件全名：可以开始跟踪新文件，或者把已跟踪的文件放到暂存区，还能用于合并时把有冲突的文件标记为已解决状态等）。
 cat .gitignore 忽略的文件：忽略某些文件。

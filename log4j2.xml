@@ -11,7 +11,7 @@
 			filePattern="${sys:index.log.home}/esp-web.log.%d{yyyy-MM-dd}.%i.log.gz">
 			<PatternLayout
 				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5p %c{1}(%L) - %m%n" />
-			<Policies>
+			<Policies> 
 				<TimeBasedTriggeringPolicy />
 				<SizeBasedTriggeringPolicy size="1024 MB" />
 			</Policies>
