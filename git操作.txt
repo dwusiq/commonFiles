@@ -38,7 +38,7 @@ git branch -a:查看所有分支。
 git merge branchName：合并branchName分支到master 分支。
 git branch -d branchName:删除branchName分支。
 git mergetool branchName：调用一个可视化的合并工具并引导你解决当前分支和branchName分支的所有冲突。
-
+ssh -T git@github.com：测试是否连接成功（一下信息说明成功：Hi dwusiq! You've successfully authenticated, but GitHub does not provide shell access.）
 
 
 
