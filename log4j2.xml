@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Configuration>
+<Configuration status="info" monitorInterval="5">
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5p %c{2}(%F:%L) - %m%n" />
+		</Console>
+
+		<RollingFile name="fixedTimeFileAppender" fileName="${sys:index.log.home}/esp-web.log"
+			filePattern="${sys:index.log.home}/esp-web.log.%d{yyyy-MM-dd}.%i.log.gz">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5p %c{1}(%L) - %m%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="1024 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="512" />
+		</RollingFile>
+
+		<RollingFile name="appMonitorFixedTimeFileAppender"
+			fileName="${sys:index.log.home}/esp-web-appmonitor.log"
+			filePattern="${sys:index.log.home}/esp-web-appmonitor.log.%d{yyyy-MM-dd}.%i.log.gz">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5p %c{1}(%F:%L) - %m%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="1024 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="512" />
+		</RollingFile>
+
+		<RollingFile name="myBatisFileAppender" fileName="${sys:index.log.home}/mybatis.log"
+			filePattern="${sys:index.log.home}/mybatis.log.%d{yyyy-MM-dd}.%i.log.gz">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5p %c{2}(%L) - %m%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="1024 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="512" />
+		</RollingFile>
+
+		<Async name="async" bufferSize="512" includeLocation="true">
+			<AppenderRef ref="fixedTimeFileAppender" />
+		</Async>
+
+		<Async name="asyncAppMonitor" bufferSize="512">
+			<AppenderRef ref="appMonitorFixedTimeFileAppender" />
+		</Async>
+	</Appenders>
+	<Loggers>
+		<Logger name="cn.webank" level="info" additivity="false">
+			<AppenderRef ref="async" />
+		</Logger>
+
+		<Logger name="appMonitor" level="info" additivity="false">
+			<AppenderRef ref="asyncAppMonitor" />
+		</Logger>
+
+		<Logger name="cn.webank.esp" level="debug" additivity="false">
+			<AppenderRef ref="console" />
+		</Logger>
+
+		<Root level="info">
+			<AppenderRef ref="async" />
+		</Root>
+	</Loggers>
+</Configuration>

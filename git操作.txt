@@ -1,0 +1,44 @@
+对于任何一个文件，在Git 内都只有三种状态：已提交（committed），已修改（modified）和已暂存（staged）。已提交表示该文件已经被安全地保存在本地数据库中；已修改表示修改了某个文件，但还没有提交保存；已暂存表示把已修改的文件放在下次提交时要保存的清单中。
+
+工作目录下面的所有文件都不外乎这两种状态：已跟踪或未跟踪。
+
+touch README.md：新建一个README.md文件。
+git init:对现有的某个项目生成git目录。
+git clone [url]:克隆仓库。
+git status：确定哪些文件当前处于什么状。
+git add 文件全名：可以开始跟踪新文件，或者把已跟踪的文件放到暂存区，还能用于合并时把有冲突的文件标记为已解决状态等）。
+cat .gitignore 忽略的文件：忽略某些文件。
+git diff：查看具体修改了什么地方。
+git diff --cached：看已经暂存起来的文件和上次提交时的快照之间的差异。
+git diff --staged：看已经暂存起来的文件和上次提交时的快照之间的差异。
+git commit：提交更新（启动vim编辑）。
+git commit -m”注描述”：提交更新（双引号的是描述内容）。
+git commit -a -m “描述”:提交更新（跳过 git add）
+git config --list:查看配置信。
+rm 文件全名:只是简单地从工作目录中手工删除文件（还要git rm 文件全名）。
+git rm 文件全名：记录此次移除文件的操。
+git rm -f 文件全名：强制删除（包含暂存区域的文件）。
+git mv file_from file_to：移动文件或更改文件名字。
+git log:查看提交历史(另外，进入日志后可以直接按q推出log)。
+git log -p:展开显示每次提交的内容差异。
+git log -2:仅显示最近的两次更新。
+git remote -v:显示对应的克隆地址。
+git remote add [shortname] [url]:添加一个新的远程仓库。
+git fetch shortname（仓库地址名称）：抓取所有shortname仓库有的，但本地仓库没有的信息。（fetch 命令只是将远端的数据拉到本地仓库，并不自动合并到当前工作分支）
+git pull：将远端分支自动合并到本地仓库中当前分支。
+git push [remote-name] [branch-name]：将本地仓库中的数据推送到远程仓库。
+git remote show [remote-name]：查看远程仓库的详细信息。
+git remote rename：修改某个远程仓库的简短名称。
+git remote rm remote-name：移除对应的远端仓库。
+git tag：对某一时间点上的版本打上标签。
+
+git branch branchName:新建一个名为branchName的分支（-b新建并切换到该分支）。
+git checkout branchName：切换到branchName分支。
+git branch -a:查看所有分支。
+git merge branchName：合并branchName分支到master 分支。
+git branch -d branchName:删除branchName分支。
+git mergetool branchName：调用一个可视化的合并工具并引导你解决当前分支和branchName分支的所有冲突。
+
+
+
+
