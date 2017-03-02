@@ -1,0 +1,60 @@
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+
+version = "0.1"
+description = "gradleBase"
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+def defaultEncoding = 'UTF-8'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+List servlet = ['javax.servlet:servlet-api:2.5']
+List apache_commons = [
+        "commons-codec:commons-codec:1.9",
+        "commons-fileupload:commons-fileupload:1.3"
+]
+
+List junit = ["junit:junit:4.11"]
+
+dependencies {
+    compile apache_commons,junit,servlet
+    runtime apache_commons,servlet
+}
+
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+
+        resources {
+            srcDir 'src/main/resources'
+        }
+    }
+
+    test {
+        java {
+            srcDir 'src/unit.test/java'
+        }
+
+        resources {
+            srcDir 'src/unit.test/resources'
+        }
+    }
+}
+
+task createJavaProject << {
+    sourceSets*.java.srcDirs*.each { it.mkdirs() }
+    sourceSets*.resources.srcDirs*.each { it.mkdirs()}
+}
+
+task createWebProject(dependsOn: 'createJavaProject') << {
+    def webAppDir = file("$webAppDirName")
+    webAppDir.mkdirs()
+}
