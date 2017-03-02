@@ -25,36 +25,3 @@ dependencies {
     compile apache_commons,junit,servlet
     runtime apache_commons,servlet
 }
-
-
-sourceSets {
-    main {
-        java {
-            srcDir 'src/main/java'
-        }
-
-        resources {
-            srcDir 'src/main/resources'
-        }
-    }
-
-    test {
-        java {
-            srcDir 'src/unit.test/java'
-        }
-
-        resources {
-            srcDir 'src/unit.test/resources'
-        }
-    }
-}
-
-task createJavaProject << {
-    sourceSets*.java.srcDirs*.each { it.mkdirs() }
-    sourceSets*.resources.srcDirs*.each { it.mkdirs()}
-}
-
-task createWebProject(dependsOn: 'createJavaProject') << {
-    def webAppDir = file("$webAppDirName")
-    webAppDir.mkdirs()
-}
