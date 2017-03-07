@@ -21,7 +21,15 @@ List apache_commons = [
 
 List junit = ["junit:junit:4.11"]
 
+List logger = [
+        'org.apache.logging.log4j:log4j-api:2.1',
+        'org.apache.logging.log4j:log4j-core:2.1',
+        'org.apache.logging.log4j:log4j-slf4j-impl:2.1',
+        'org.apache.logging.log4j:log4j-web:2.1',
+        'org.slf4j:jcl-over-slf4j:1.7.12'
+]
+
 dependencies {
-    compile apache_commons,junit,servlet
-    runtime apache_commons,servlet
+    compile apache_commons,junit,servlet，logger
+    runtime apache_commons,junit,servlet，logger
 }
