@@ -20,6 +20,9 @@ $或方向键向下——>跳转到行尾
 ?后跟查找的字符串——>vim会显示文本中最后一个出现的字符串。
 set noincsearch——>会转到普通模式，不会自动显示第一个匹配，回车后显示所有匹配。高亮所有的匹配后，按n键转到下一个匹配，按N键转到上一个匹配。
 
+查找文件中的字符串：步骤一：less+文件名  步骤二：G+回车（到文件的最后一页） 步骤三：如果页面显示Calculating line numbers... (interrupt to abort)，则按Ctrl+c。直到
+出现Line numbers turned off  (press RETURN)，就按回车键。步骤四：如果页面出现（END），则输入问号+要查询的字符串+回车。步骤五：按n查询上一个。步骤六：按q退出搜索。
+
 
 SecureCRT：
 rz -y -b -e——>上传文件
