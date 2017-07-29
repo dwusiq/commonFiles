@@ -126,3 +126,10 @@
 006、如果用java配置文件配置，@EnableWebSecurity或@EnableWebMvcSecurity注解将会启用Web安全功能，Spring Security必须配置在一个实现了WebSecurityConfigurer的bean中，或者（简单起见）扩展WebSecurityConfigurerAdapter
 007、用户数据通常会存储在关系型数据库中，并通过JDBC进行访问。为了配置Spring Security使用以JDBC为支撑的用户存储，我们可以使用jdbcAuthentication()方法
 008、Spring Security的加密模块包括了三个这样的实现：BCryptPasswordEncoder、NoOpPasswordEncoder和StandardPasswordEncoder。
+
+第10章、通过Spring和JDBC征服数据库
+001、Spring配置数据源的方式：通过JDBC驱动程序定义的数据源、通过JNDI查找的数据源、使用数据源连接池。
+002、在开发或测试的情况下可以使用嵌入式的数据源（embedded database）
+003、借助Spring的profile特性能够在运行时选择数据源
+004、Spring为JDBC提供了三个模板类：JdbcTemplate（绝大多数用这个）、NamedParameterJdbcTemplate、SimpleJdbcTemplate
+005、
