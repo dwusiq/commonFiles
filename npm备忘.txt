@@ -1,0 +1,3 @@
+001、可以使用npm init -f在项目目录下生成package.json这个文件，至于生成的package.json中缺少的字段你可以参照其他的模块的package.json文件填进去。至于package.json中的每个字段的值可以为“”。至于依赖项字段，以安装模块的时候使用-save参数就会自动写到文件中。
+002、 npm install sqlite3 -save
+003、

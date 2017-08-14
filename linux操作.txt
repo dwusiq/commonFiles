@@ -31,3 +31,6 @@ tar -zxv -f apache-tomcat-7.0.29.tar.gz——>解压压缩包
 rm -rf apache-tomcat-7.0.29.tar.gz——>删除压缩包
 mv apache-tomcat-7.0.29 tomcat——>移动文件
 sz fileName-->下载文件
+
+
+关闭nodejs项目：killall node
