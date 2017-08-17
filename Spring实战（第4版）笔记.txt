@@ -144,6 +144,23 @@
 007、Spring提供了多个JPA厂商适配器：EclipseLinkJpaVendorAdapter、HibernateJpaVendorAdapter、OpenJpaVendorAdapter、TopLinkJpaVendorAdapter（在Spring 3.1版本中，已经将其废弃了）
 008、可以在LocalContainerEntityManagerFactoryBean中通过packagesToScan属性设置需要扫描的包，这样就会在这个包查找带有@Entity注解的类。
 009、@Transactional表明这个Repository中的持久化方法是在事务上下文中执行的
+010、而<jpa:repositories>或者@EnableJpaRepositories会扫描它的基础包来查找扩展自SpringData JPA Repository接口的所有接口。如果发现了扩展自Repository的接口，它会自动生成（在应用启动的时候）这个接口的实现。
+011、Spring Data定义了一组小型的领域特定语言（domainspecificlanguage ，DSL），在这里，持久化的细节都是通过Repository方法的签名来描述的。
+012、Spring Data允许在方法名中使用四种动词：get、read、find和count。动词get、read和find是同义的，这三个动词对应的Repository方法都会查询数据并返回对象。而动词count则会返回匹配对象的数量，而不是对象本身。
+013、如果所需的数据无法通过方法名称进行恰当地描述，那么我们可以使用@Query注解，为Spring Data提供要执行的查询
+014、Spring Data JPA将实现类与接口关联起来是基于接口的名称。但是，Impl后缀只是默认的做法，如果你想使用其他后缀的话，只需在配置@EnableJpa-Repositories的时候，设置repositoryImplementationPostfix属性即可
+015、我们将后缀设置成了Helper，Spring Data JPA将会查找名为SpitterRepository-Helper的类，用它来匹配SpitterRepository接口。
+016、
+　
 
 第12章、使用NoSQL数据库
-001、pring Data MongoDB提供了三种方式在Spring应用中使用MongoDB：通过注解实现对象-文档映射；使用MongoTemplate实现基于模板的数据库访问；自动化的运行时Repository生成功能。
+001、什么是NoSQL:NoSQL，指的是非关系型的数据库。NoSQL有时也称作Not Only SQL的缩写，是对不同于传统的关系型数据库的数据库管理系统的统称。
+002、Redis以key-value存储
+003、Spring Data Redis包含了多个模板实现，用来完成Redis数据库的数据存取功能
+004、Spring Data Redis提供了四种Redis客户端实现提供了连接工厂：JedisConnectionFactory;JredisConnectionFactory;LettuceConnectionFactory;SrpConnectionFactory
+005、所有的Redis连接工厂都具有setHostName()、setPort()和setPassword()方法
+006、Spring Data Redis以模板的形式提供了较高等级的数据访问方案，两个模板：RedisTemplate、StringRedisTemplate
+007、RedisTemplate可以极大地简化Redis数据访问，能够让我们持久化各种类型的key和value，并不局限于字节数组。在认识到key和value通常是String类型之后，StringRedisTemplate扩展了RedisTemplate，只关注String类型。
+008、当某个条目保存到Redis key-value存储的时候，key和value都会使用Redis的序列化器（serializer）进行序列化
+009、Spring Data Redis提供了多个这样的序列化器，包括：GenericToStringSerializer：使用Spring转换服务进行序列化；JacksonJsonRedisSerializer：使用Jackson 1，将对象序列化为JSON；Jackson2JsonRedisSerializer：使用Jackson 2，将对象序列化为JSON；JdkSerializationRedisSerializer：使用Java序列化；OxmSerializer：使用Spring O/X映射的编排器和解排器（marshaler和unmarshaler）实现序列化，用于XML序列化；StringRedisSerializer：序列化String类型的key和value。
+010、

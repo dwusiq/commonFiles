@@ -1,0 +1,44 @@
+0001、
+
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.springframework.web.context.WebApplicationContext' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:1493)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1104)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585)
+	... 32 more
+
+	解决方法：有一个服务接口的实现类没有添加@Service注解，加上@Service就可以了
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+0002、
+Caused by: redis.clients.jedis.exceptions.JedisDataException: WRONGTYPE Operation against a key holding the wrong kind of value
+	at redis.clients.jedis.Protocol.processError(Protocol.java:127)
+	at redis.clients.jedis.Protocol.process(Protocol.java:161)
+	at redis.clients.jedis.Protocol.read(Protocol.java:215)
+	at redis.clients.jedis.Connection.readProtocolWithCheckingBroken(Connection.java:340)
+	at redis.clients.jedis.Connection.getIntegerReply(Connection.java:265)
+	at redis.clients.jedis.BinaryJedis.zadd(BinaryJedis.java:1558)
+	at org.springframework.data.redis.connection.jedis.JedisConnection.zAdd(JedisConnection.java:2225)
+	... 42 more
+	
+	解决方法： 因为redis中已经存在了相同的key， 而且key对应的值类型并不是准备插入的类型
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+0003、
