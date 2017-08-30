@@ -12,13 +12,6 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 	
 	
 	
-	
-	
-	
-
-	
-	
-	
 0002¡¢
 Caused by: redis.clients.jedis.exceptions.JedisDataException: WRONGTYPE Operation against a key holding the wrong kind of value
 	at redis.clients.jedis.Protocol.processError(Protocol.java:127)
@@ -35,10 +28,8 @@ Caused by: redis.clients.jedis.exceptions.JedisDataException: WRONGTYPE Operatio
 	
 	
 	
-	
-	
+0003¡¢
 
 	
 	
 	
-0003¡¢

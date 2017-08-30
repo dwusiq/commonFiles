@@ -8,12 +8,7 @@ su——>普通用户切换成超级用户
 
 
 文本操作：
-vi filename——>编辑该文件
-按键Esc——>结束文件编辑，进入等待命令状态
-:wq!——>保存并退出编辑
-:wq——>保存修改并退出
-ZZ——>保存修改并退出
-:q——>不保存修改并退出
+
 $或方向键向下——>跳转到行尾
 0或方向键想上——>跳转到行首
 /后跟查找的字符串——>vim会显示文本中第一个出现的字符串。
@@ -22,15 +17,3 @@ set noincsearch——>会转到普通模式，不会自动显示第一个匹配，回车后显示所有匹配。
 
 查找文件中的字符串：步骤一：less+文件名  步骤二：G+回车（到文件的最后一页） 步骤三：如果页面显示Calculating line numbers... (interrupt to abort)，则按Ctrl+c。直到
 出现Line numbers turned off  (press RETURN)，就按回车键。步骤四：如果页面出现（END），则输入问号+要查询的字符串+回车。步骤五：按n查询上一个。步骤六：按q退出搜索。
-
-
-SecureCRT：
-rz -y -b -e——>上传文件
-crl+shif+c——>复制
-tar -zxv -f apache-tomcat-7.0.29.tar.gz——>解压压缩包
-rm -rf apache-tomcat-7.0.29.tar.gz——>删除压缩包
-mv apache-tomcat-7.0.29 tomcat——>移动文件
-sz fileName-->下载文件
-
-
-关闭nodejs项目：killall node

@@ -163,4 +163,47 @@
 007、RedisTemplate可以极大地简化Redis数据访问，能够让我们持久化各种类型的key和value，并不局限于字节数组。在认识到key和value通常是String类型之后，StringRedisTemplate扩展了RedisTemplate，只关注String类型。
 008、当某个条目保存到Redis key-value存储的时候，key和value都会使用Redis的序列化器（serializer）进行序列化
 009、Spring Data Redis提供了多个这样的序列化器，包括：GenericToStringSerializer：使用Spring转换服务进行序列化；JacksonJsonRedisSerializer：使用Jackson 1，将对象序列化为JSON；Jackson2JsonRedisSerializer：使用Jackson 2，将对象序列化为JSON；JdkSerializationRedisSerializer：使用Java序列化；OxmSerializer：使用Spring O/X映射的编排器和解排器（marshaler和unmarshaler）实现序列化，用于XML序列化；StringRedisSerializer：序列化String类型的key和value。
-010、
+
+
+第13章、缓存数据
+001、@Cacheable、@CacheEvict、@EnableCaching、<cache:annotation-driven>
+002、缓存管理器实现：SimpleCacheManager、NoOpCacheManager、ConcurrentMapCacheManager、CompositeCacheManager、EhCacheCacheManager、RedisCacheManager、GemfireCacheManager
+003、EhCache、redis
+
+
+第14章、保护方法应用
+001、Spring Security提供了三种不同的安全注解：Spring Security自带的@Secured注解；JSR-250的@RolesAllowed注解；表达式驱动的注解（@PreAuthorize、@PostAuthorize、@PreFilter和@PostFilter）
+002、用@Secured注解限制方法调用
+003、javaConfig启用基于注解的方法安全性:@EnableGlobalMethodSecurity
+004、@Secured注解会使用一个String数组作为参数
+005、于@RolesAllowed是JSR-250定义的Java标准注解。
+006、javaConfig启动@RolesAllowed注解：将@EnableGlobalMethodSecurity的jsr250Enabled属性设置为true
+
+
+第15章、使用远程服务（搞不定jar包问题）
+001、多种远程调用技术：远程方法调用（Remote Method Invocation，RMI）；Caucho的Hessian和Burlap；Spring基于HTTP的远程服务；使用JAX-RPC和JAX-WS的Web Service。
+002、远程调用是客户端应用和服务端之间的会话
+003、在Spring中，远程服务被代理，所以它们能够像其他Spring bean一样被装配到客户端代码中。
+004、RmiServiceExporter可以把任意Spring管理的bean发布为RMI服务
+005、RmiServiceExporter把bean包装在一个适配器类中，然后适配器类被绑定到RMI注册表中，并且代理到服务类的请求
+006、默认情况下，RmiServiceExporter会尝试绑定到本地机器1099端口上的RMI注册表
+007、利用DI，任何客户端都不需要关心服务来源于何处
+008、Spring的RmiProxyFactoryBean是一个工厂bean，该bean可以为RMI服务创建代理
+009、RmiProxyFactoryBean生成一个代理对象，该对象代表客户端来负责与远程的RMI服务进行通信。客户端通过服务的接口与代理进行交互，就如同远程服务就是一个本地的POJO
+010、RMI的客户端和服务端必须都是用Java开发的
+011、于Hessian的消息是二进制的，而Burlap的消息是XML
+012、HessianServiceExporter是一个Spring MVC控制器，它可以接收Hessian请求，并把这些请求转换成对POJO的调用从而将POJO导出为一个Hessian服务
+013、由于Hessian是基于HTTP的，所以HessianSeriviceExporter实现为一个Spring MVC控制器
+014、Hessian服务配置：在web.xml中配置Spring的DispatcherServlet，并把我们的应用部署为　Web应用；在Spring的配置文件中配置一个URL处理器，把Hessian服务的URL分发给对应的Hessian服务bean。
+
+
+第16章、使用Spring MVC创建REST API
+001、REST：Representational State Transfer（以信息为中心的表述性状态转移）
+002、通常CRUD动作：Create(POST)、Read(GET)、Update(PUT或PATCH)、Delete(DELETE)
+003、在REST中，资源通过URL进行识别和定位
+004、ContentNegotiatingViewResolver两个步骤：1．确定请求的媒体类型；2．找到适合请求媒体类型的最佳视图。
+005、借助ContentNegotiationManager我们所能做到：指定默认的内容类型，如果根据请求无法得到内容类型的话，将会使用默认值；通过请求参数指定内容类型；忽视请求的Accept头部信息；将请求的扩展名映射为特定的媒体类型；将JAF（Java Activation Framework）作为根据扩展名查找媒体类型的备用方案。
+006、@ResponseBody注解会告知Spring，我们要将返回的对象作为资源发送给客户端，并将其转换为客户端可接受的表述形式
+007、@RequestMapping注解的produces属性可以指定处理哪种请求。
+008、
+
