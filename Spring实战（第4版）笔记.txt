@@ -224,3 +224,66 @@
 020、getForObject()和getForEntity()都将资源根据responseType参数匹配为一定的类型。唯一的区别在于getForObject()只返回所请求类型的对象，而getForEntity()方法会返回请求的对象以及响应相关的额外信息，如HTTP状态码和响应头。
 021、RestTemplate的exchange()可以在发送给服务端的请求中设置头信息
 022、可以构造发送给exchange()方法的HttpEntity对象，HttpEntity中包含承载头信息的MultiValueMap
+
+
+第17章　Spring消息
+001、异步消息是一个应用程序向另一个应用程序间接发送消息的一种方式，这种方式无需等待对方的响应
+002、异步消息中有两个主要的概念：消息代理（message broker）和目的地（destination）
+003、Java消息服务（Java Message Service ，JMS）是一个Java标准，定义了使用消息代理的通用API
+004、Spring为JMS提供了模板支持：JmsTemplate
+005、JMS需要一个消息代理（ActiveMQ），它能够在消息的生产者和消费者之间传递消息
+006、ActiveMQConnectionFactory是ActiveMQ自带的连接工厂
+007、默认情况下，ActiveMQConnectionFactory会假设ActiveMQ代理监听localhost的61616端口
+008、可以使用<amq:quence>元素来声明队列，用<amq:topic>元素来声明主题
+009、与send()方法不同，convertAndSend()方法并不需要MessageCreator作为参数。这是因为convertAndSend()会使用内置的消息转换器（message converter）为我们创建消息。
+010、用JmsTemplate的receive()方法接收消息或者receiveAndConvert()；
+011、JmsTemplate接收消息的最大缺点在于receive()和receiveAndConvert()方法都是同步的
+012、如果使用消息驱动模型来创建提醒处理器，我们需要使用@MessageDriven注解进行标注。
+013、a、先把处理器声明为bean;b、把这个bean声明为消息监听器
+014、消息监听器容器监听队列和主题。当消息到达时，消息将转给消息监听器
+015、导出器的属性并没有描述服务如何基于JMS通信的细节。但好消息是JmsInvokerServiceExporter可以充当JMS监听器。因此，我们使用<jms:listenercontainer>元素配置它
+016、JmsInvokerProxyFactoryBean的connectionFactory和queryName属性指定了RPC消息如何被投递——在这里
+017、Model实际上就是一个Map（也就是key-value对的集合），它会传递给视图，这样数据就能渲染到客户端了。当调用addAttribute
+018、AMQP的线路层协议规范了消息的格式，消息在生产者和消费者间传送的时候会遵循这个格式，而且具有更加灵活和透明的消息模型
+019、Spring AMQP是Spring框架的扩展
+020、AMQP在消息的生产者以及传递信息的队列之间引入了一种间接的机制：Exchange
+021、四种标准的AMQP Exchange如下所示：
+      a、Direct：如果消息的routing key与binding的routing key直接匹配的话，消息将会路由到该队列上；
+      b、Topic：如果消息的routing key与binding的routing key符合通配符匹配的话，消息将会路由到该队列上；
+	  c、Headers：如果消息参数表中的头信息和值都与bingding参数表中相匹配，消息将会路由到该队列上；
+	  d、Fanout：不管消息的routing key和参数表的头信息/值是什么，消息将会路由到所有队列上。
+022、RabbitMQ是一个流行的开源消息代理，它实现了AMQP。SpringAMQP为RabbitMQ提供了支持，包括RabbitMQ连接工厂、模板以及Spring配置命名空
+023、默认情况下，连接工厂会假设RabbitMQ服务器监听localhost的5672端口，并且用户名和密码均为guest
+024、Spring AMQP的rabbit命名空间包含了多个元素，用来创建队列、Exchange以及将它们结合在一起的binding
+025、Spring AMQP提供RabbitTemplate来消除RabbitMQ发送和接收消息相关的样板式代码就
+026、RabbitTemplate可以用send()或者与convertAndSend()来发送消息
+027、RabbitTemplate可以用receive()或者receiveAndConvert()来接收消息
+
+
+第18章　使用WebSocket和STOMP实现消息功能
+001、WebSocket协议提供了通过一个套接字实现全双工通信的功能
+002、Spring 4.0为WebSocket通信提供了支持，包括：发送和接收消息的低层级API；发送和接收消息的高级API；用来发送消息的模板；支持SockJS，用来解决浏览器端、服务器以及代理不支持WebSocket的问题。
+003、WebSocketHandler、AbstractWebSocketHandler
+
+
+第19章　使用Spring发送Email
+001、Spring Email抽象的核心是MailSender接口。
+002、javaMailSenderImpl会使用JavaMail API来发送Email。
+003、默认情况下，JavaMailSenderImpl假设邮件服务器监听25端口（标准的SMTP端口）
+004、可以配置它使用JNDI中已就绪的MailSession。
+005、SimpleMailMessage
+006、setFrom()指定发送者、setTo()指定接收者、setSubject()指定主题、setText()内容
+007、如果发送带有附件的Email，关键技巧是创建multipart类型的消息——Email由多个部分组成，其中一部分是Email体，其他部分是附件。
+008、发送multipart类型的Email需要创建一个MIME（Multipurpose Internet Mail Extensions）的消息、或者更好的MimeMessageHelper
+009、MimeMessageHelper的addAttachment()添加附件
+010、使用模板生成Email：包括Apache Velocity和Thymeleaf
+
+
+第21章　借助Spring Boot简化Spring开发
+001、Spring Boot四个主要的特性：
+      a、Spring Boot Starter：它将常用的依赖分组进行了整合，将其合并到一个依赖中，这样就可以一次性添加到项目的Maven或Gradle构建中；
+      b、自动配置：Spring Boot的自动配置特性利用了Spring 4对条件化配置的支持，合理地推测应用所需的bean并自动化配置它们；
+	  c、命令行接口（Command-line interface，CLI）：Spring Boot的CLI发挥了Groovy编程语言的优势，并结合自动配置进一步简化Spring应用的开发；
+	  d、Actuator：它为Spring Boot应用添加了一定的管理特性。
+002、Spring Boot预先打包好的依赖：spring-boot-starter-xx
+003、
