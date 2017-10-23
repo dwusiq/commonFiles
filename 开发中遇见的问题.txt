@@ -37,6 +37,7 @@ Caused by: java.lang.ClassNotFoundException: com.fasterxml.jackson.core.util.Def
 	... 53 more
 	
 	解决方法： 缺少jackson-core.jar、jackson-databind、jackson-module-jaxb-annotations.jar、json-lib.jar
+	           另外：还可能有一个原因，版本问题：spring4.x 至少要用Jackson2.6以上才能匹配。
 	
 	
 	
@@ -115,4 +116,107 @@ java.lang.ClassCastException: java.util.LinkedHashMap cannot be cast to com.wusi
 	
 	
 0006、
+java.lang.ClassNotFoundException: org.hibernate.validator.HibernateValidator
+	org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1275)
+	org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1109)
+	org.springframework.util.ClassUtils.forName(ClassUtils.java:250)
+	org.springframework.util.ClassUtils.resolveClassName(ClassUtils.java:284)
+	org.springframework.beans.propertyeditors.ClassEditor.setAsText(ClassEditor.java:63)
+	org.springframework.beans.TypeConverterDelegate.doConvertTextValue(TypeConverterDelegate.java:468)
+	org.springframework.beans.TypeConverterDelegate.doConvertValue(TypeConverterDelegate.java:441)
+	org.springframework.beans.TypeConverterDelegate.convertIfNecessary(TypeConverterDelegate.java:199)
+	org.springframework.beans.AbstractNestablePropertyAccessor.convertIfNecessary(AbstractNestablePropertyAccessor.java:590)
+	org.springframework.beans.AbstractNestablePropertyAccessor.convertForProperty(AbstractNestablePropertyAccessor.java:617)
+	org.springframework.beans.BeanWrapperImpl.convertForProperty(BeanWrapperImpl.java:216)
+	org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.convertForProperty(AbstractAutowireCapableBeanFactory.java:1577)
+	org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1536)
+	org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1276)
+	org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
+	org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:351)
+	org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:108)
+	org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1531)
+	org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1276)
+	org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
+	org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveInnerBean(BeanDefinitionValueResolver.java:299)
+	org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:129)
+	org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1531)
+	org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1276)
+	org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553)
+	org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761)
+	org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:867)
+	org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:543)
+	org.springframework.web.servlet.FrameworkServlet.configureAndRefreshWebApplicationContext(FrameworkServlet.java:668)
+	org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:634)
+	org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:682)
+	org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:553)
+	org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:494)
+	org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:171)
+	javax.servlet.GenericServlet.init(GenericServlet.java:158)
+	org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:475)
+	org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:80)
+	org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:624)
+	org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:498)
+	org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:796)
+	org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1366)
+	org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	java.lang.Thread.run(Thread.java:745)
+	
+	解决方法： hibernate-validator jar包版本太高了，改用5.4.1.Final就可以了
+	
+	
+	
+	
+0007、
+Caused by: java.lang.ClassNotFoundException: org.springframework.dao.support.DaoSupport
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1275)
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1109)
+	... 67 more
+	
+	解决方法： 缺少包：spring-jdbc
+	
+	
+	
+	
+0008、
+mybatis查询成功，并返回一条数据，但是用来接收这个结果的实体是空的。
+	
+	解决方法： 数据库字段和java bean的字段不一致，如：数据库（user_name） java Bean(userName), 处理方法是在查询的时候用as转一下就可以。
+	
+	
+	
+	
+0009、
+javax.validation.UnexpectedTypeException: HV000030: No validator could be found for type: java.lang.Integer.
+	
+	解决方法：As per the javadoc of NotEmpty, Integer is not a valid type for it to check. It's for Strings and collections. If you just want to make sure an Integer has some value, javax.validation.constraints.NotNull is all you need. 
+	
+	
+	
+	
+0010、
+linux下部署javaWeb项目，tomcat启动成功，也可以访问example项目，但是访问自己的项目就报404。
+	
+	解决方法： 有很多原因，我这次的原因是打war包的时候多了个版本号1，比如我的项目：myServer,打包后就变成了myServer1，部署到linux上之后，我还是用myServer访问，所以404。
+	
+	
+	
+	
+0011、
+	
 	
