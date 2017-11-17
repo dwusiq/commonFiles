@@ -217,6 +217,10 @@ linuxÏÂ²¿ÊğjavaWebÏîÄ¿£¬tomcatÆô¶¯³É¹¦£¬Ò²¿ÉÒÔ·ÃÎÊexampleÏîÄ¿£¬µ«ÊÇ·ÃÎÊ×Ô¼ºµÄÏîÄ
 	
 	
 	
-0011¡¢
+0011¡¢ÔõÃ´ÉèÖÃ²îÒì»¯±äÁ¿ÄØ£¿ÈçÔÚjavaÏîÄ¿µÄxmlÖĞÊ¹ÓÃ£º${sys:index.log.home}
+   
+	
+	½â¾ö·½·¨£º ĞŞ¸ÄtomcatµÄbinÄ¿Â¼ÏÂµÄcatalina.sh£¨linux£©»òÕßcatalina.bat(window) ÎÄ¼ş¼Ğ£¬ÀàËÆ£º  set "JAVA_OPTS=%JAVA_OPTS% -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dindex.log.home=E:\testLog"
+
 	
 	
